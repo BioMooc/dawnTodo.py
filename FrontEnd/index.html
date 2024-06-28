@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta http-equiv=Content-Type content="text/html;charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="日程管理，长期提醒" />
+
+  <!-- 引入 Vue 3 CDN 
+    <script src="https://unpkg.com/vue@next"></script>
+  -->
+  <script src="/static/js/lib/vue.global-3.0.11.js"></script>
+  <script src="/static/js/lib/vue-router.global-4.0.6.js"></script>
+  <script src="/static/js/lib/axios.min-1.7.2.js"></script>
+  <!-- 引入 Axios CDN 
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  -->
+  <!-- 引入 Babel CDN（如果需要支持旧浏览器） 
+    <script src="https://cdn.jsdelivr.net/npm/@babel/standalone/babel.min.js"></script>
+    -->
+    <link rel="stylesheet" type="text/css" href="/static/css/index.css">
+
+<style>
+.box{
+  border:1px solid blue;
+  display: inline-flex;
+  padding:5px;
+  margin:10px;
+}
+</style>
+
+    <title>
+      日程管理软件
+      | powered by MyTodo.py 
+      v0.0.0-1
+    </title>
+</head>
+
+
+<body>
+  <div id="app">
+    <!-- 导航栏 -->
+    <ul id=topNav>
+
+      <b class=logo>
+        <!--a href="#/"><img src="/favicon.ico"></a-->
+        dawnTodo.py
+      </b>
+
+      <template v-for="menu in topMenu">
+        <li :class="{current: (menu.path!='/' && currentRoute.startsWith(menu.path)) || 
+          (menu.path=='/' && currentRoute=='/') }">
+          <router-link :to="menu.path">{{menu.caption}}</router-link>
+        </li>
+      </template>
+    </ul>
+    
+    
+    
+    <!-- 显示具体页面内容 -->
+    <main id="container">     
+      <router-view></router-view>
+    </main>
+
+  </div>
+  <!----
+  -->
+    <script type="module" src="./app.js"></script>
+</body>
+</html>
+
+<script type="module">
+</script>
