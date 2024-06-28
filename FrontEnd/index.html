@@ -28,11 +28,18 @@ body{
 .container{
   width:800px;
   margin:0 auto;
+
+  background-color: white;
+  padding:10px;
+}
+.footer{
+  background-color: rgb(92, 91, 91);
 }
 .box{
   display: inline-flex;
   padding:5px;
   margin:10px;
+  width:90%;
   
   background-color: #ffffff;
   border:1px solid #eeeeee;
@@ -51,7 +58,29 @@ body{
   font-weight: bold;
 }
 .task{
-  color:red;
+  color:black;
+}
+ul.task{ list-style: none; list-style-type: none; padding-left: 20px; }
+
+.task li:hover{
+  background-color: #efefef;
+}
+.task span{
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.task a{
+  color:black;
+  text-decoration: none;
+}
+
+.task a:hover{
+  text-decoration: underline;
+}
+
+.box h2{
+  margin-top: 0;
 }
 
 </style>
@@ -91,12 +120,22 @@ body{
       <router-view></router-view>
     </main>
 
+    <footer class="footer">
+      <p>Today is {{timestamp.toString()}} | Set up for {{elapse}} days</p>
+      <p>Copyright &copy;2024 - present 
+    		<a target="_blank" href="https://www.biomooc.com">BioMooc.com</a>. 
+    		All Rights Reserved.
+    	</p>
+      
+      <p>
+        <a target="_blank" href="https://gitee.com/DawnEve/dawnTodo.py">Folk me
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"></path></svg>      
+        </a>
+      </p>
+    </footer>
+
   </div>
-  <!----
-  -->
     <script type="module" src="./app.js"></script>
+    
 </body>
 </html>
-
-<script type="module">
-</script>

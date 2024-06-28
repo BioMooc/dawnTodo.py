@@ -11,6 +11,8 @@ import TaskList from './components/TaskList.vue.js';
 const app = Vue.createApp({
   data(){
     return{
+      timestamp: new Date(), //vm.timestamp
+
       topMenu:[
         {path:'/', caption:'Home'},
         {path:'/tasks', caption:'tasks'},
@@ -25,7 +27,7 @@ const app = Vue.createApp({
       return this.$route.path;
     },
     elapse(){ // 自博客创建以来的天数，保留3位小数
-      return ((this.timestamp.getTime() - 1620665409601)/1000/3600/24).toFixed(3);
+      return ((this.timestamp.getTime() - 1719564446600)/1000/3600/24).toFixed(3);
     }
   },
 

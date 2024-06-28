@@ -14,12 +14,14 @@ back end:
 * run: $ python3 app.py
 
 
+
 # How to add data
 change sqlite by cmd:
 $ cd instance
 $ sqlite3 tasks.db 
 sqlite> INSERT INTO task (user_id, title, description, priority, due_date) VALUES (1, '明天任务', '明天的会议', 'low', '2024-06-29');
 sqlite> .exit
+
 
 
 # UI 学习
@@ -30,3 +32,4 @@ sqlite> .exit
 # todo:
 add page
 edit page
+add tags
