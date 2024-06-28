@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify
 from models import db, Task, TaskSchema
+from sqlalchemy import or_,and_
 
 from datetime import datetime, timedelta
 
@@ -30,11 +31,15 @@ def get_tasks():
     # 计算过去一个月的日期范围，互斥
     #now = datetime.utcnow()
     now = datetime.now()
+    next_season = now + timedelta(days=92)
     next_month = now + timedelta(days=30)
     next_week = now + timedelta(days=7)
     next_day = now + timedelta(days=1)
 
-    if next_period in ("month", "week", "day"):
+    if next_period in ("season","month", "week", "day"):
+        if "season"==next_period:
+            time1=next_month
+            time2=next_season
         if "month"==next_period:
             time1=next_week
             time2=next_month
@@ -48,16 +53,16 @@ def get_tasks():
         # 使用SQLAlchemy查询过去一个时间段的记录
         tasks = Task.query.filter(
             Task.due_date.between(time1, time2),
-            Task.completed == None
+            (Task.completed == None) | (Task.completed == False)
         ).order_by(
             Task.due_date.desc()
         ).all()
-    elif next_period == "due": #过期日程
+    elif next_period == "due": #过期日程，且未完成
         print("if2>, next_period=", next_period)
         now = datetime.now()
         tasks = Task.query.filter(
             Task.due_date < now,
-            Task.completed == None
+            (Task.completed == None) | (Task.completed == False)
         ).order_by(
             Task.due_date.desc()
         ).all()
@@ -65,6 +70,13 @@ def get_tasks():
         print("if3, next_period=", next_period)
         tasks = Task.query.filter(
             Task.completed == True
+        ).order_by(
+            Task.due_date.desc()
+        ).all()
+    elif next_period == "uncompleted": #未完成
+        print("if3, next_period=", next_period)
+        tasks = Task.query.filter(
+            (Task.completed == None) | (Task.completed == False)
         ).order_by(
             Task.due_date.desc()
         ).all()

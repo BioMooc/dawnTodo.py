@@ -37,7 +37,8 @@ export default {
 	//props:['caption'],
     //<li><a :href="'/tasks/'+task.task_id">{{ task.title }}</a></li>
 	template:`
-    <div>
+    <div class="container">
+    
         <p><a href="/">Back home</a></p>
         <h2>Task information: </h2>
         
