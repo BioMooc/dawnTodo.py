@@ -33,3 +33,4 @@ sqlite> .exit
 add page
 edit page
 add tags
+favicon.ico

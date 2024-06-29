@@ -1,12 +1,11 @@
 
 // 载入所有的页面视图 组件
-import Home from "./views/Home.vue.js" //单个任务页面
-import Task from "./views/Task.vue.js" //单个任务页面
-import About from "./views/About.vue.js" //单个任务页面
-//const MyAbout = {template: '<div>About this page</div>',}
+import Home from "./views/Home.vue.js" //首页
+import Task from "./views/Task.vue.js" //任务详情
+import About from "./views/About.vue.js" //关于项目
+//const About = {template: '<div>About this page</div>',}
 //import { createApp } from 'vue';
-import TaskList from './components/TaskList.vue.js';
-
+import TaskList from './components/TaskList.vue.js'; //任务列表
 
 const app = Vue.createApp({
   data(){

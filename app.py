@@ -6,7 +6,6 @@ from flask_cors import CORS
 
 def create_app():
     app = Flask(__name__)
-    CORS(app)
     app.config.from_object(Config)
     
     db.init_app(app)
@@ -15,6 +14,11 @@ def create_app():
     with app.app_context():
         db.create_all()
     
+    #CORS(app)
+    # 配置 CORS，详细配置允许的来源和方法
+    CORS(app, resources={r"/*": {"origins": "*"}},
+        methods=["GET", "POST", "OPTIONS"], supports_credentials=True)
+
     from routes.users import users_bp
     from routes.tasks import tasks_bp
     from routes.subtasks import subtasks_bp

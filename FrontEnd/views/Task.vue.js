@@ -1,13 +1,9 @@
-//Task.vue.js
-//import PostTags from "./PostTags.vue.js"
-//import MyCategory from "./components/MyCategory.js"
-
+// 单个任务详情
 import { getTask } from '../api.js';
+import TaskButton from '../components/TaskButton.vue.js';
 
 export default {
-    //components:{ PostTags },
-	//inject:['categories', 'posts'],
-	//inject:['tasks'],
+    components:{ TaskButton },
 
     data() {
         return {
@@ -39,14 +35,44 @@ export default {
 	template:`
     <div class="container">
     
-        <p><a href="/">Back home</a></p>
+        <TaskButton></TaskButton>
+        <a class="btn" href="/">首页</a>
+        
         <h2>Task information: </h2>
         
+        <div class="tasks">
+            <a class="btn" href="#/tasks/?action=del">删除</a>
+            <a class="btn" href="#/tasks/?action=edit">编辑</a>
+
+            <div class="info">
+                <span>[task_id: {{task.task_id}}]</span>
+                <span>due_date: {{task.due_date}}</span>
+                <span :class="'priority priority_'+task.priority">Priority: {{task.priority}}</span>
+            </div>
+            
+            <p class="title" :style="{textDecoration: task.completed ? 'line-through' : 'none'}">
+                <span :style="{display: task.completed ? 'inline-block' : 'none'}">(已完成)</span>
+                <b title="Title">{{task.title}}</b>
+            </p>
+            <p class="desc" title="Description">
+                <span>{{task.description}}</span>
+            </p>
+            
+            <div class="info">
+                <span>created_at: {{task.created_at}}</span>
+                <span>updated_at: {{task.updated_at}}</span>
+                <span>user_id: {{task.user_id}}</span>
+            </div>
+        </div>
+
+    </div>
+    `
+}
+
+/*
         <ul>
             <template v-for="(value, key) in task">
             <li>{{key}}: {{value}}</li>
             </template>
         </ul>
-    </div>
-    `
-}
+*/

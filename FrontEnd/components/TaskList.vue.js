@@ -1,4 +1,5 @@
   import TaskItem from './TaskItem.vue.js';
+  import TaskForm from './TaskForm.vue.js';
   import { getTasks, createTask } from '../api.js';
 
   export default {
@@ -7,12 +8,13 @@
       default:""
     } },
 
-    components: { TaskItem },
+    components: { TaskItem, TaskForm},
 
     data() {
       return {
         tasks: [],
         next_period: "",
+        action:"",
       };
     },
 
@@ -31,7 +33,7 @@
         try {
           var url;
           if( this.next_period==undefined ){
-            console.log("if ...")
+            //console.log("if ...")
             url=getTasks();
           }else{
             url=getTasks()+"/?next_period="+this.next_period;
@@ -68,11 +70,16 @@
       //this.next_period=this.$route.query.next_period; 
       this.next_period= this.next_period2==""? this.$route.query.next_period : this.next_period2;
       //console.log("props: >>next_period2=", this.next_period2)
+      
+      this.action=this.$route.query.action;
+
       this.fetchTasks();
     },
 
     template:`
     <div class="container">
+      <TaskForm v-show="action=='add'"></TaskForm>
+
       <h2>{{title}} ({{tasks.length}})</h2>
       <ul class=task>
         <TaskItem v-for="task in tasks" :key="task.id" :task="task" />

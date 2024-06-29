@@ -1,0 +1,120 @@
+body{
+    background-color: #FFF6F3;
+    font-family: "Segoe UI",SegoeUI,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+  .container{
+    width:800px;
+    margin:0 auto;
+  
+    background-color: white;
+    padding:10px;
+  }
+  .footer{
+    background-color: rgb(92, 91, 91);
+  }
+  .box{
+    display: inline-flex;
+    padding:5px;
+    margin:10px;
+    width:90%;
+    
+    background-color: #ffffff;
+    border:1px solid #eeeeee;
+    border-radius: 10px;
+  }
+  
+  .btn{
+    cursor: pointer;
+    background-color: black;
+    color:white;
+    border-radius: 5px;
+    padding:8px;
+    margin:5px;
+    display: inline-flex;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  .task{
+    color:black;
+  }
+  ul.task{ list-style: none; list-style-type: none; padding-left: 20px; }
+  
+  .task li:hover{
+    background-color: #efefef;
+  }
+  .task span{
+    /*display: inline-block;*/
+    margin-right: 5px;
+  }
+  
+  .task a{
+    color:black;
+    text-decoration: none;
+  }
+  
+  .task a:hover{
+    text-decoration: underline;
+  }
+  
+  .box h2{
+    margin-top: 0;
+  }
+  
+  .grey{color:#ddd;}
+  
+  .tasks span{
+    display: inline-block; margin-right: 30px;
+  }
+  .tasks .info{
+    border:1px soid red; 
+    background:#eee;
+    font-size: small;
+    padding:5px;
+  }
+  
+  /*tag color*/
+  .priority{
+    color:white;
+    padding:0.5px 2px;
+    border-radius: 2px;
+    margin:0 5px;
+    display: inline-block;
+  }
+  .priority_high{ background: deeppink;}
+  .priority_medium{ background: orange;}
+  .priority_low{ background: blue;}
+  
+  
+  .tasks a.btn{
+    background-color: white;
+    color:black;
+    border:1px solid black;
+    padding:5px;
+  }
+  .tasks .title{
+    /*
+    background-color: deeppink;
+    color:white;
+    border-left: 5px solid deeppink;
+    */
+    border: 2px solid black;
+    color:black;
+    padding:5px 10px;
+  }
+  
+  .tasks .desc{
+    font: 12px "Courier New";
+    padding: 5px 10px;
+    border: 2px dashed black;
+    border-top-width: 0px;
+    min-height: 100px;
+    /*
+    border: 1px solid #ccc;
+    color: #007dbc;
+    */
+  
+    line-height: 20px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+  
