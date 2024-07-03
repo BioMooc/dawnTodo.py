@@ -1,27 +1,33 @@
 body{
     background-color: #FFF6F3;
     font-family: "Segoe UI",SegoeUI,"Helvetica Neue",Helvetica,Arial,sans-serif;
-  }
-  .container{
+}
+.container{
     width:800px;
     margin:0 auto;
-  
+
     background-color: white;
     padding:10px;
-  }
-  .footer{
-    background-color: rgb(92, 91, 91);
-  }
-  .box{
-    display: inline-flex;
-    padding:5px;
-    margin:10px;
-    width:90%;
-    
-    background-color: #ffffff;
-    border:1px solid #eeeeee;
-    border-radius: 10px;
-  }
+}
+.container a{
+    color: #005789;
+}
+.container a.btn{
+  color:white;
+}
+.footer{
+background-color: rgb(92, 91, 91);
+}
+.box{
+display: inline-flex;
+padding:5px;
+margin:10px;
+width:90%;
+
+background-color: #ffffff;
+border:1px solid #eeeeee;
+border-radius: 10px;
+}
   
   .btn{
     cursor: pointer;
@@ -117,4 +123,67 @@ body{
     white-space: pre-wrap;
     word-wrap: break-word;
   }
+
+
+
+ /* add task*/
+  .add-task {
+    margin: 20px;
+  }
+  .add-task div{
+    padding:10px;
+    line-height: 20px;
+  }
+  .add-task form {
+    display: flex;
+    flex-direction: column;
+  }
   
+  .add-task label {
+    display: inline-block;
+    width:80px;
+    margin-right: 5px;
+    text-align: right;
+    vertical-align: top;
+  }
+  .add-task textarea,
+  .add-task input{
+    width:500px;
+    height: 25px;
+    padding:5px;
+  }
+  .add-task textarea{
+    height: 100px;
+  }
+  .add-task select{
+    height: 30px;
+    padding:5px;
+    min-width: 100px;
+  }
+  .add-task div.btn_box{
+    width:500px;
+    margin:0 auto;
+    
+  }
+  .add-task button {
+    margin-top: 20px;
+    padding: 10px;
+    margin:10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width:180px;
+  }
+  .add-task button.cancel{
+    background-color: white;
+    color:black;
+    border:1px solid #ccc;
+  }
+  .add-task button.cancel:hover {
+    background-color: #ddd;
+  }
+
+  .add-task button:hover {
+    background-color: #45a049;
+  }

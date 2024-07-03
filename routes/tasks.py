@@ -1,9 +1,8 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, make_response
 from models import db, Task, TaskSchema
 from sqlalchemy import or_,and_
 
 from datetime import datetime, timedelta
-import json
 
 tasks_bp = Blueprint('tasks', __name__)
 task_schema = TaskSchema()
@@ -21,16 +20,6 @@ def create_task():
     
     action = request.args.get('action')
     print(">>", "create_task: action=", action)
-    
-    # PUT 一直失败，用这个代替: update
-    if action=="put":
-        task_id = request.json.get('task_id')
-        task = Task.query.get(task_id)
-        task.completed = request.json.get("completed", task.completed)
-
-        db.session.commit()
-        return task_schema.jsonify(task), 201
-    
 
     # 新增
     user_id = request.json.get('user_id')
@@ -82,7 +71,7 @@ def get_tasks():
             Task.due_date.between(time1, time2),
             (Task.completed == None) | (Task.completed == False)
         ).order_by(
-            Task.due_date.desc()
+            Task.due_date.asc()
         ).all()
     elif next_period == "due": #过期日程，且未完成
         #print("if2>, next_period=", next_period)
@@ -105,7 +94,7 @@ def get_tasks():
         tasks = Task.query.filter(
             (Task.completed == None) | (Task.completed == False)
         ).order_by(
-            Task.due_date.desc()
+            Task.due_date.asc()
         ).all()
     else:
         #print("else, next_period=", next_period)
@@ -124,24 +113,42 @@ def get_task(task_id):
     return task_schema.jsonify(task), 201
 
 
+
 #更新
 @tasks_bp.route('/<int:task_id>', methods=['PUT', "OPTIONS"])
 def update_task(task_id):
-    print("0>>update_task: ", task_id)
-    if request.method == 'OPTIONS':
-        print("1>>OPTIONS in update_task")
-        #return jsonify({'error': 'Method is OPTIONS'}), 404
-        return 'xx', 200 #这个必须有，否则报错，似乎第一次是 OPTIONS 请求，所谓的预请求？
-    
-    print("2>>update_task: ", task_id)
     task = Task.query.get(task_id)
     if not task:
         return jsonify({'error': 'Task not found'}), 404
     
-    def is_it_true(value):
-        return value.lower() == 'true'
-    
-    task.completed = request.form.get("completed", type=is_it_true)
+    print("1>>", dir(task) )
+    print("1.5>", request.json.get("completed"))
+
+    #task.update(request.json)
+    task.title = request.json.get("title", task.title)
+    task.description = request.json.get("description", task.description)
+    task.priority = request.json.get("priority", task.priority)
+
+    # for bool type
+    completed=request.json.get("completed", task.completed)
+    print("-->0 completed=", completed)
+    if isinstance(completed, str):
+        print("-->1 completed=", completed)
+        task.completed = completed.lower() in ['true', '1', 't', 'y', 'yes']
+    if isinstance(completed, bool):
+        print("-->2 completed=", completed)
+        task.completed = completed
+
+    # for date
+    due_date_str = request.json.get("due_date", None)
+    if due_date_str is not None:
+        task.due_date = datetime.strptime(due_date_str, '%Y-%m-%d').date() if due_date_str else None
+
+    print("2>>", task, task.task_id, task.due_date, task.completed)
+    #return jsonify({'error': 'Task not found'}), 404
+
     db.session.commit()
-    
     return task_schema.jsonify(task), 201
+
+
+

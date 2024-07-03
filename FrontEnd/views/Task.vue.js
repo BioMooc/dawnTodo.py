@@ -37,12 +37,12 @@ export default {
     
         <TaskButton></TaskButton>
         <a class="btn" href="/">首页</a>
-        
+
         <h2>Task information: </h2>
-        
+
         <div class="tasks">
-            <a class="btn" href="#/tasks/?action=del">删除</a>
-            <a class="btn" href="#/tasks/?action=edit">编辑</a>
+            <a class="btn" :href="'#/tasks/?action=del&task_id='+task.task_id">删除</a>
+            <a class="btn" :href="'#/tasks/?action=edit&task_id='+task.task_id">编辑</a>
 
             <div class="info">
                 <span>[task_id: {{task.task_id}}]</span>

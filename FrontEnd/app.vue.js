@@ -14,7 +14,7 @@ const app = Vue.createApp({
 
       topMenu:[
         {path:'/', caption:'Home'},
-        {path:'/tasks', caption:'tasks'},
+        {path:'/tasks/?next_period=uncompleted', caption:'tasks'},
         {path:'/about', caption:'about'},
       ],
     }

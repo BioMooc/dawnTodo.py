@@ -15,8 +15,8 @@ export default {
         //console.log(updatedTask,  getTasks() )
         //axios.put(`http://j3.biomooc.com:8501/tasks/${updatedTask.id}`, updatedTask)
         
-        //axios.put( updateTask(updatedTask.task_id), updatedTask)
-        axios.post( getTasks()+"/?action=put", updatedTask)
+        axios.put( updateTask(updatedTask.task_id), updatedTask)
+        //axios.post( getTasks()+"/?action=put", updatedTask)
           .then(response => {
             // 处理成功响应，可以在此处进行其他操作，比如更新视图状态
             //console.log('Task completion updated successfully:', response.data);

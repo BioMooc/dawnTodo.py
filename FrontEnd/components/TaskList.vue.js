@@ -1,5 +1,6 @@
   import TaskItem from './TaskItem.vue.js';
-  import TaskForm from './TaskForm.vue.js';
+  import TaskAdd from './TaskAdd.vue.js';
+  import TaskEdit from './TaskEdit.vue.js';
   import { getTasks, createTask } from '../api.js';
 
   export default {
@@ -8,7 +9,7 @@
       default:""
     } },
 
-    components: { TaskItem, TaskForm},
+    components: { TaskItem, TaskAdd, TaskEdit},
 
     data() {
       return {
@@ -78,12 +79,18 @@
 
     template:`
     <div class="container">
-      <TaskForm v-show="action=='add'"></TaskForm>
-
-      <h2>{{title}} ({{tasks.length}})</h2>
-      <ul class=task>
-        <TaskItem v-for="task in tasks" :key="task.id" :task="task" />
-      </ul>
+      <template v-if="action=='add'">
+        <TaskAdd></TaskAdd>
+      </template>
+      <template v-if="action=='edit'">
+        <TaskEdit></TaskEdit>
+      </template>
+      <template v-else>
+        <h2>{{title}} ({{tasks.length}})</h2>
+        <ul class=task>
+          <TaskItem v-for="task in tasks" :key="task.id" :task="task" />
+        </ul>
+      </template>
     </div>
     `
   };

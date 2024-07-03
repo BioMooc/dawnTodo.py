@@ -1,0 +1,22 @@
+
+def test():
+    headers = {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'DELETE'
+    }
+    return make_response((jsonify({'error_code': 0, 'mode': 'wjl'}), 202, headers))
+
+    if request.method == 'OPTIONS':
+        print("1>>OPTIONS in update_task")
+        #return jsonify({'error': 'Method is OPTIONS'}), 404
+        return 'xx', 200 #这个必须有，否则报错，似乎第一次是 OPTIONS 请求，所谓的预请求？
+    
+    # PUT 一直失败，用这个代替: update
+    if action=="put":
+        task_id = request.json.get('task_id')
+        task = Task.query.get(task_id)
+        task.completed = request.json.get("completed", task.completed)
+
+        db.session.commit()
+        return task_schema.jsonify(task), 201
