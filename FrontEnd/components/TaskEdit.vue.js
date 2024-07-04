@@ -9,7 +9,9 @@ export default {
         title: '1',
         description: '2',
         priority:'',
-        due_date: ''
+        due_date: '',
+        total_steps: 0,
+        current_step: 0,
       }
     };
   },
@@ -33,7 +35,7 @@ export default {
     },
     
     updateTask() {
-        console.log(">> updateTask: {url:", updateTask(this.task.task_id), ", task:", this.task)
+        //console.log(">> updateTask: {url:", updateTask(this.task.task_id), ", task:", this.task)
         
         axios.put( updateTask(this.task.task_id), this.task)
         .then(response => {
@@ -93,6 +95,16 @@ export default {
                 <option value="true">true</option>
                 <option value="false">false</option>
             </select>
+        </div>
+
+        <div>
+            <label for="current_step">current_step</label>
+            <input type="number" id="current_step" v-model="task.current_step">
+        </div>
+
+        <div>
+            <label for="total_steps">total_steps</label>
+            <input type="number" id="total_steps" v-model="task.total_steps">
         </div>
 
         <div class="btn_box">

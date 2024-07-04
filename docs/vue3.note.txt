@@ -1,0 +1,82 @@
+1. 父子组间通信
+(1) props 单向：父->子
+父
+<child-component :message="parentMessage"></child-component>
+
+子
+props: {
+  message: {
+    type: String,
+    required: true
+  }
+}
+
+(2) $emit 子->父
+子组件通过 $emit 触发自定义事件,向父组件传递数据。
+父组件通过 v-on 监听子组件的自定义事件,并处理传递的数据。
+
+<!-- 子组件 -->
+<button @click="handleClick">Click me</button>
+// 子组件
+methods: {
+  handleClick() {
+    this.$emit('custom-event', 'some data')
+  }
+}
+
+<!-- 父组件 -->
+<child-component @custom-event="handleCustomEvent"></child-component>
+// 父组件
+methods: {
+  handleCustomEvent(data) {
+    console.log(data) // 'some data'
+  }
+}
+
+
+
+3. provide/inject: 父->子 远程通信
+父组件通过 provide 提供数据,子组件通过 inject 注入数据。
+这种方式适用于跨层级的数据传递。
+
+// 父组件
+provide: {
+  message: 'Hello, Vue3!'
+}
+
+// 子组件
+inject: ['message']
+
+
+
+
+4. v-model 双向绑定呢？
+<!-- 父组件模板 -->
+<child-component v-model="parentValue"></child-component>
+// 父组件脚本
+export default {
+  data() {
+    return {
+      parentValue: 'Hello from parent'
+    }
+  }
+}
+
+
+<!-- 子组件模板 -->
+<template>
+  <input type="text" :value="modelValue" @input="$emit('update:modelValue', $event.target.value)" />
+</template>
+// 子组件脚本
+export default {
+  props: {
+    modelValue: {
+      type: String,
+      required: true
+    }
+  },
+  emits: ['update:modelValue']
+}
+
+
+

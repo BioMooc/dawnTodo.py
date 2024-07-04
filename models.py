@@ -20,9 +20,12 @@ class Task(db.Model):
     priority = db.Column(db.Enum('low', 'medium', 'high'), default='medium')
     due_date = db.Column(db.Date)
     completed = db.Column(db.Boolean, default=False)
+    current_step = db.Column(db.Integer, default=0)
+    total_steps = db.Column(db.Integer, default=0)
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, server_default=db.func.now(), onupdate=db.func.now())
     user = db.relationship('User', backref=db.backref('tasks', lazy=True))
+
 
 class Subtask(db.Model):
     subtask_id = db.Column(db.Integer, primary_key=True)

@@ -4,6 +4,9 @@ import TaskButton from '../components/TaskButton.vue.js';
 export default {
     components:{ TaskList, TaskButton },
 
+    methods: {
+    },
+
 	template:`
     <div class="container">
         <TaskButton></TaskButton>

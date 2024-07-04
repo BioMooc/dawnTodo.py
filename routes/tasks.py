@@ -129,6 +129,9 @@ def update_task(task_id):
     task.description = request.json.get("description", task.description)
     task.priority = request.json.get("priority", task.priority)
 
+    task.total_steps = request.json.get("total_steps", task.total_steps)
+    task.current_step = request.json.get("current_step", task.current_step)
+
     # for bool type
     completed=request.json.get("completed", task.completed)
     #print("-->0 completed=", completed)
@@ -146,6 +149,7 @@ def update_task(task_id):
 
     #print("2>>", task, task.task_id, task.due_date, task.completed)
     #return jsonify({'error': 'Task not found'}), 404
+    print("3>>", task, task.total_steps, task.current_step)
 
     db.session.commit()
     return task_schema.jsonify(task), 201

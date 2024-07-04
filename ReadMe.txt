@@ -34,9 +34,8 @@ sqlite> .exit
 
 
 # todo:
-+ add page
+[v0.0.5]add/edit page
 + add tags
-edit page
 favicon.ico
 定期任务：
 去年任务：

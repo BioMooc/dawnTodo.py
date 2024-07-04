@@ -5,6 +5,8 @@ v0.0.3 add footer [2024.6.28]
 v0.0.4 update UI [2024.6.29]
 v0.0.5 edit task [2024.7.3]
 v0.0.6 delete task，手写Vue版确认对话框 [2024.7.4]
-
-
+v0.0.7 add page 优化为弹出层; 增加任务完成百分比 [2024.7.4]
+    记录读书计划等耗时任务：
+        total_steps, current_step 记录完成情况，
+        completion_percentage 计算属性 显示完成百分比
 #

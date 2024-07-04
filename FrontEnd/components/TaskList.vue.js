@@ -41,10 +41,19 @@
             //console.log("else ...", )
           }
           
-          //console.log('url:', url);
           const response = await axios.get(url);
-
           this.tasks = response.data;
+          for(var i=0; i<this.tasks.length; i++){
+            var task=this.tasks[i];
+            task.completion_percentage=0
+            task.title2=""
+            if(task.total_steps!=0){
+              //console.log(i, ">>[] task=", task)
+              task['completion_percentage'] = Math.round(task.current_step/task.total_steps *100)
+              task['title2']=task.completion_percentage + "%["+ task.current_step +"/"+ task.total_steps +"]"
+            }
+          }
+
         } catch (error) {
           console.error('An error occurred while fetching tasks:', error);
         }

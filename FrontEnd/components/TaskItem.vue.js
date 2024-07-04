@@ -38,6 +38,10 @@ export default {
         <span :class="'priority priority_'+task.priority">{{task.priority}}</span>
         
         <a :href="'#/tasks/'+task.task_id">{{ task.title }}</a>
+        <progress class="right" :value="task.completion_percentage" max="100" :title="task.title2" v-show="task.title2!=''"> </progress>
+        
       </li>
     `
-};
+  };
+
+  //<input type="number" v-model.number="task.completion_percentage" @change="updateTask(task.id, { completion_percentage: task.completion_percentage })" min="0" max="100" />

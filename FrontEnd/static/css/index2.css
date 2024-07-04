@@ -148,7 +148,7 @@ border-radius: 10px;
   }
   .add-task textarea,
   .add-task input{
-    width:500px;
+    width:80%;
     height: 25px;
     padding:5px;
   }
@@ -203,4 +203,9 @@ border-radius: 10px;
 
 .confirm-dialog button {
   margin: 5px;
+}
+
+progress.right{
+  float:right;
+  margin:0 20px;
 }

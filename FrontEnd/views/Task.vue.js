@@ -22,6 +22,13 @@ export default {
                 .then(response => {
                     this.task = response.data;
                     //console.log(">> >>", response.data)
+                    this.task.completion_percentage=0
+                    this.task.title2=""
+                    if(this.task.total_steps!=0){
+                        window.wjl=this.task;
+                        this.task.completion_percentage = Math.round(this.task.current_step/this.task.total_steps *100)
+                        this.task.title2=this.task.completion_percentage + "%["+ this.task.current_step +"/"+ this.task.total_steps +"]"
+                    }
                 })
                 .catch(error => {
                     console.error('Error fetching tasks:', error);
@@ -39,7 +46,7 @@ export default {
         },
 
         doDeleteTask(){
-            console.log("delete task_id: ", this.taskIdToDelete)
+            //console.log("delete task_id: ", this.taskIdToDelete)
             axios.delete( deleteTask(this.taskIdToDelete) )
                 .then(response => {
                     //删除一个元数
@@ -112,6 +119,11 @@ export default {
             </p>
             <p class="desc" title="Description">
                 <span>{{task.description}}</span>
+            </p>
+            
+            <p> 进度: 
+                <span>({{task.current_step}}/{{task.total_steps}})</span>
+                <progress :value="task.completion_percentage" max="100" :title="task.title2"> </progress>
             </p>
             
             <div class="info">
