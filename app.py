@@ -17,7 +17,7 @@ def create_app():
     #CORS(app)
     # 配置 CORS，详细配置允许的来源和http请求方法
     CORS(app, resources={r"/*": {"origins": "*"}},
-        methods=["GET", "POST", "PUT", "OPTIONS"], supports_credentials=True)
+        methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"], supports_credentials=True)
 
     from routes.users import users_bp
     from routes.tasks import tasks_bp

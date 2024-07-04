@@ -121,8 +121,8 @@ def update_task(task_id):
     if not task:
         return jsonify({'error': 'Task not found'}), 404
     
-    print("1>>", dir(task) )
-    print("1.5>", request.json.get("completed"))
+    #print("1>>", dir(task) )
+    #print("1.5>", request.json.get("completed"))
 
     #task.update(request.json)
     task.title = request.json.get("title", task.title)
@@ -131,12 +131,12 @@ def update_task(task_id):
 
     # for bool type
     completed=request.json.get("completed", task.completed)
-    print("-->0 completed=", completed)
+    #print("-->0 completed=", completed)
     if isinstance(completed, str):
-        print("-->1 completed=", completed)
+        #print("-->1 completed=", completed)
         task.completed = completed.lower() in ['true', '1', 't', 'y', 'yes']
     if isinstance(completed, bool):
-        print("-->2 completed=", completed)
+        #print("-->2 completed=", completed)
         task.completed = completed
 
     # for date
@@ -144,11 +144,21 @@ def update_task(task_id):
     if due_date_str is not None:
         task.due_date = datetime.strptime(due_date_str, '%Y-%m-%d').date() if due_date_str else None
 
-    print("2>>", task, task.task_id, task.due_date, task.completed)
+    #print("2>>", task, task.task_id, task.due_date, task.completed)
     #return jsonify({'error': 'Task not found'}), 404
 
     db.session.commit()
     return task_schema.jsonify(task), 201
 
 
-
+# INSERT INTO task (task_id, user_id, title, description, priority, due_date) VALUES (11, 1, '标题11', '内容11', 'high', '2024-07-05');
+# 删除任务
+@tasks_bp.route('/<int:task_id>', methods=['DELETE'])
+def delete_task(task_id):
+    #task = Task.query.get(task_id)
+    task = Task.query.get_or_404(task_id)
+    db.session.delete(task)
+    db.session.commit()
+    print("delete task:", task_id)
+    return '', 204
+    #return task_schema.jsonify(task), 204

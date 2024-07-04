@@ -47,7 +47,7 @@ export default {
         });
     },
     cancel(){
-      this.$router.push('/');
+      this.$router.push('/tasks/'+this.task.task_id);
     }
   },
 

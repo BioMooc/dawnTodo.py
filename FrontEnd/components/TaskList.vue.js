@@ -15,7 +15,7 @@
       return {
         tasks: [],
         next_period: "",
-        action:"",
+        action: "",
       };
     },
 
