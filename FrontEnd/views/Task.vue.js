@@ -96,8 +96,8 @@ export default {
         <h2>Task information: </h2>
 
         <div class="tasks">
+            <a class="btn blue" :href="'#/tasks/?action=edit&task_id='+task.task_id">编辑</a>
             <a class="btn" @click.prevent="showConfirmDialog(task.task_id)">删除</a>
-            <a class="btn" :href="'#/tasks/?action=edit&task_id='+task.task_id">编辑</a>
 
              <!-- Confirm Dialog 删除确认对话框 -->
             <div v-if="showConfirm" class="confirm-dialog">

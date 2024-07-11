@@ -4,6 +4,7 @@ More docs: docs/
 # location
 local: @J3_server:/home/wangjl/soft/dawnTodo.py
 remote: https://gitee.com/dawnEve/dawnTodo.py
+url: http://j3.biomooc.com:8500/
 
 # How to run?
 front end: 

@@ -97,6 +97,12 @@ border-radius: 10px;
     border:1px solid black;
     padding:5px;
   }
+
+  .tasks a.btn.blue {
+    color: white;
+    background: black;
+  }
+
   .tasks .title{
     /*
     background-color: deeppink;
