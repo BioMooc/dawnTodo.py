@@ -88,15 +88,15 @@ export default {
         <input type="text" id="due_date" v-model="task.due_date" placeholder="2024-06-28">
       </div>
 
-        <div>
-            <label for="total_steps">total_steps</label>
-            <input type="text" id="total_steps" v-model="task.total_steps">
-        </div>
-
-        <div>
-            <label for="current_step">current_step</label>
-            <input type="text" id="current_step" v-model="task.current_step">
-        </div>
+      <div>
+          <label for="current_step">current_step</label>
+          <input type="text" id="current_step" v-model="task.current_step">
+      </div>
+          
+      <div>
+          <label for="total_steps">total_steps</label>
+          <input type="text" id="total_steps" v-model="task.total_steps">
+      </div>
 
       <div class="btn_box">
         <button type="submit">添加任务(Add Task)</button>

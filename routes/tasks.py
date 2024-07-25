@@ -29,8 +29,12 @@ def create_task():
 
     due_date_str = request.json.get('due_date')
     due_date = datetime.strptime(due_date_str, '%Y-%m-%d').date() if due_date_str else None
+
+    current_step = request.json.get("current_step", 0)
+    total_steps = request.json.get("total_steps", 0)
     
-    new_task = Task(user_id=user_id, title=title, description=description, priority=priority, due_date=due_date)
+    new_task = Task(user_id=user_id, title=title, description=description, priority=priority, due_date=due_date,
+                    current_step=current_step, total_steps=total_steps)
     db.session.add(new_task)
     db.session.commit()
     
@@ -129,8 +133,8 @@ def update_task(task_id):
     task.description = request.json.get("description", task.description)
     task.priority = request.json.get("priority", task.priority)
 
-    task.total_steps = request.json.get("total_steps", task.total_steps)
     task.current_step = request.json.get("current_step", task.current_step)
+    task.total_steps = request.json.get("total_steps", task.total_steps)
 
     # for bool type
     completed=request.json.get("completed", task.completed)

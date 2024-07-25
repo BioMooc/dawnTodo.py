@@ -147,14 +147,14 @@ border-radius: 10px;
   
   .add-task label {
     display: inline-block;
-    width:80px;
+    width:90px;
     margin-right: 5px;
     text-align: right;
     vertical-align: top;
   }
   .add-task textarea,
   .add-task input{
-    width:80%;
+    width:70%;
     height: 25px;
     padding:5px;
   }
