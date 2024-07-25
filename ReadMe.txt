@@ -36,8 +36,9 @@ sqlite> .exit
 
 # todo:
 [v0.0.5]add/edit page
+[v0.0.6] 完成进度
+
 + add tags
 favicon.ico
-定期任务：
-去年任务：
-完成进度：
+定期任务：每周运动2次
+去年任务：去年今日

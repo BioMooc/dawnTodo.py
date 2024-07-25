@@ -11,6 +11,7 @@ v0.0.7 add page 优化为弹出层; 增加任务完成百分比 [2024.7.4]
         completion_percentage 计算属性 显示完成百分比
 v0.0.8 update button css [2024.7.11]
 v0.0.9 fix add task [2024.7.25]
+v0.1.0 add favicon.ico [2024.7.25]
 #
 
 
