@@ -12,6 +12,7 @@ v0.0.7 add page 优化为弹出层; 增加任务完成百分比 [2024.7.4]
 v0.0.8 update button css [2024.7.11]
 v0.0.9 fix add task [2024.7.25]
 v0.1.0 add favicon.ico [2024.7.25]
+v0.1.1 home 显示不应该是 next，应该是 current [2024.7.25]
 #
 
 

@@ -24,7 +24,7 @@
         if(["due", "completed", "uncompleted"].indexOf(this.next_period)>=0){ 
           return this.capitalizeFirstLetter(this.next_period)
         }
-        return this.next_period ? ("Next "+this.next_period) : "All tasks"
+        return this.next_period ? ("Current "+this.next_period) : "All tasks"
       }
     },
 
